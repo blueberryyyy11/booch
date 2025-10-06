@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOAD Concepts - Chapters 1-3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .chapter-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .chapter-btn {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .chapter-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .chapter-btn.active {
+            background: white;
+            color: #1a2a6c;
+        }
+        
+        .flashcards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .flashcard {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .flashcard:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .flashcard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .chapter-tag {
+            background: #1a2a6c;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .card-number {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .flashcard-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .term {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1a2a6c;
+        }
+        
+        .definition {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .details {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: left;
+        }
+        
+        .example {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .footer-note {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .flashcards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Object-Oriented Analysis & Design</h1>
+            <p class="subtitle">Chapters 1-3: Complexity, Object Model, Classes & Objects</p>
+        </header>
+        
+        <div class="chapter-selector">
+            <button class="chapter-btn active" data-chapter="all">All Chapters</button>
+            <button class="chapter-btn" data-chapter="1">Chapter 1: Complexity</button>
+            <button class="chapter-btn" data-chapter="2">Chapter 2: Object Model</button>
+            <button class="chapter-btn" data-chapter="3">Chapter 3: Classes & Objects</button>
+        </div>
+        
+        <div class="flashcards-container" id="flashcards">
+            <!-- Flashcards will be generated by JavaScript -->
+        </div>
+        
+        <div class="footer-note">
+            <p>Based on "Object-Oriented Analysis and Design with Applications" by Grady Booch et al.</p>
+        </div>
+    </div>
+
+    <script>
+        // Flashcards data
+        const flashcards = [
+            // Chapter 1: Complexity
+            {
+                chapter: 1,
+                term: "Complexity in Software",
+                definition: "Software is inherently complex due to problem domain complexity, development process management difficulties, flexibility of software, and problems characterizing discrete systems.",
+                details: "Brooks suggests that much of software complexity is arbitrary, not essential, stemming from communication gaps between users and developers."
+            },
+            {
+                chapter: 1,
+                term: "Five Attributes of Complex Systems",
+                definition: "1. Hierarchic Structure 2. Relative Primitives 3. Separation of Concerns 4. Common Patterns 5. Stable Intermediate Forms",
+                details: "These attributes help us understand and manage complexity in systems ranging from computers to biological organisms."
+            },
+            {
+                chapter: 1,
+                term: "Hierarchic Structure",
+                definition: "Complex systems are composed of interrelated subsystems that have their own subsystems, forming a hierarchy.",
+                details: "Simon notes that hierarchic structure is a major facilitating factor enabling us to understand, describe, and 'see' complex systems."
+            },
+            {
+                chapter: 1,
+                term: "Separation of Concerns",
+                definition: "Intracomponent linkages are generally stronger than intercomponent linkages, separating high-frequency dynamics from low-frequency dynamics.",
+                details: "This principle allows us to study each part of a system in relative isolation."
+            },
+            {
+                chapter: 1,
+                term: "Stable Intermediate Forms",
+                definition: "Complex systems evolve from simple systems more rapidly when there are stable intermediate forms.",
+                details: "A complex system that works is invariably found to have evolved from a simple system that worked."
+            },
+            {
+                chapter: 1,
+                term: "Object-Oriented Decomposition",
+                definition: "Viewing the world as a set of autonomous agents (objects) that collaborate to perform higher-level behavior.",
+                details: "Contrasts with algorithmic decomposition, which breaks down a system into procedural steps."
+            },
+            {
+                chapter: 1,
+                term: "Canonical Form of Complex Systems",
+                definition: "Combining class structure ('is a' hierarchy) and object structure ('part of' hierarchy) with the five attributes of complex systems.",
+                details: "Most successful complex software systems explicitly encompass well-engineered class and object structures."
+            },
+            
+            // Chapter 2: Object Model
+            {
+                chapter: 2,
+                term: "Object Model",
+                definition: "A conceptual framework encompassing abstraction, encapsulation, modularity, hierarchy, typing, concurrency, and persistence.",
+                details: "The object model unifies these elements in a synergistic way to manage complexity in software systems."
+            },
+            {
+                chapter: 2,
+                term: "Abstraction",
+                definition: "Denotes the essential characteristics of an object that distinguish it from all other kinds of objects, providing crisply defined conceptual boundaries.",
+                details: "Focuses on the outside view of an object, separating essential behavior from implementation."
+            },
+            {
+                chapter: 2,
+                term: "Encapsulation",
+                definition: "The process of compartmentalizing the elements of an abstraction that constitute its structure and behavior.",
+                details: "Serves to separate the contractual interface of an abstraction from its implementation."
+            },
+            {
+                chapter: 2,
+                term: "Modularity",
+                definition: "The property of a system that has been decomposed into a set of cohesive and loosely coupled modules.",
+                details: "Modules serve as physical containers for classes and objects in a system's architecture."
+            },
+            {
+                chapter: 2,
+                term: "Hierarchy",
+                definition: "A ranking or ordering of abstractions.",
+                details: "The two most important hierarchies are class structure ('is a') and object structure ('part of')."
+            },
+            {
+                chapter: 2,
+                term: "Typing",
+                definition: "The enforcement of the class of an object such that objects of different types may not be interchanged, or only in restricted ways.",
+                details: "Strong typing prevents mixing of abstractions and helps enforce design decisions."
+            },
+            {
+                chapter: 2,
+                term: "Concurrency",
+                definition: "The property that distinguishes an active object from one that is not active.",
+                details: "Allows different objects to act at the same time, introducing considerations for synchronization."
+            },
+            {
+                chapter: 2,
+                term: "Persistence",
+                definition: "The property of an object through which its existence transcends time and/or space.",
+                details: "Deals with object lifetime beyond program execution and object location in distributed systems."
+            },
+            {
+                chapter: 2,
+                term: "Object-Oriented Programming (OOP)",
+                definition: "A method of implementation where programs are organized as cooperative collections of objects, each representing an instance of some class.",
+                details: "Requires objects, classes, and inheritance relationships to be truly object-oriented."
+            },
+            {
+                chapter: 2,
+                term: "Object-Oriented Design (OOD)",
+                definition: "A method of design encompassing object-oriented decomposition and notation for depicting logical/physical and static/dynamic models.",
+                details: "Leads to an object-oriented decomposition, different from structured design approaches."
+            },
+            
+            // Chapter 3: Classes and Objects
+            {
+                chapter: 3,
+                term: "Object",
+                definition: "An entity that has state, behavior, and identity. The structure and behavior of similar objects are defined in their common class.",
+                details: "Objects model some part of reality and exist in time and space."
+            },
+            {
+                chapter: 3,
+                term: "State",
+                definition: "Encompasses all properties of an object plus the current values of each property.",
+                details: "Represents the cumulative results of an object's behavior and influences how it responds to operations."
+            },
+            {
+                chapter: 3,
+                term: "Behavior",
+                definition: "How an object acts and reacts, in terms of its state changes and message passing.",
+                details: "Represents the outwardly visible activity of an object."
+            },
+            {
+                chapter: 3,
+                term: "Identity",
+                definition: "The property of an object that distinguishes it from all other objects.",
+                details: "Preserved over the lifetime of an object, even when its state changes."
+            },
+            {
+                chapter: 3,
+                term: "Class",
+                definition: "A set of objects that share a common structure, common behavior, and common semantics.",
+                details: "Represents an abstraction, while objects are concrete instances of classes."
+            },
+            {
+                chapter: 3,
+                term: "Operations",
+                definition: "Services that a class offers to its clients, including modifiers, selectors, iterators, constructors, and destructors.",
+                details: "Operations define how clients can interact with objects of a class."
+            },
+            {
+                chapter: 3,
+                term: "Roles and Responsibilities",
+                definition: "Roles are masks that objects wear, defining contracts between abstractions and clients. Responsibilities are all services an object provides.",
+                details: "Objects can play multiple roles during their lifetime, each with different responsibilities."
+            },
+            {
+                chapter: 3,
+                term: "Links",
+                definition: "Physical or conceptual connections between objects through which they collaborate.",
+                details: "Enable message passing between objects, with objects playing controller, server, or proxy roles."
+            },
+            {
+                chapter: 3,
+                term: "Aggregation",
+                definition: "A specialized kind of association denoting a whole/part hierarchy.",
+                details: "Represents relationships where one object is composed of other objects, either physically or conceptually."
+            },
+            {
+                chapter: 3,
+                term: "Interface and Implementation",
+                definition: "The interface provides the outside view of a class, emphasizing abstraction. The implementation contains the secrets of behavior.",
+                details: "Programming is viewed as contracting, with classes serving as binding contracts between abstractions and clients."
+            }
+        ];
+
+        // Function to render flashcards
+        function renderFlashcards(chapter = 'all') {
+            const container = document.getElementById('flashcards');
+            container.innerHTML = '';
+            
+            let filteredCards = flashcards;
+            if (chapter !== 'all') {
+                filteredCards = flashcards.filter(card => card.chapter == chapter);
+            }
+            
+            filteredCards.forEach((card, index) => {
+                const flashcard = document.createElement('div');
+                flashcard.className = 'flashcard';
+                flashcard.innerHTML = `
+                    <div class="flashcard-header">
+                        <span class="chapter-tag">Chapter ${card.chapter}</span>
+                        <span class="card-number">${index + 1}/${filteredCards.length}</span>
+                    </div>
+                    <div class="flashcard-content">
+                        <div class="term">${card.term}</div>
+                        <div class="definition">${card.definition}</div>
+                        <div class="details">${card.details}</div>
+                    </div>
+                `;
+                
+                // Add click event to show/hide details
+                flashcard.addEventListener('click', function() {
+                    const details = this.querySelector('.details');
+                    if (details.style.display === 'block') {
+                        details.style.display = 'none';
+                    } else {
+                        details.style.display = 'block';
+                    }
+                });
+                
+                container.appendChild(flashcard);
+            });
+        }
+        
+        // Chapter selector functionality
+        document.querySelectorAll('.chapter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.chapter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+                renderFlashcards(this.getAttribute('data-chapter'));
+            });
+        });
+        
+        // Initial render
+        renderFlashcards();
+    </script>
+</body>
+</html>
