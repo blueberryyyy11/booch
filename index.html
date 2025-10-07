@@ -13,8 +13,8 @@
         }
         
         body {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            color: #333;
+            background: linear-gradient(135deg, #2c0b0e, #5d1a1f, #8b2c3a);
+            color: #f5f5f5;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -33,18 +33,20 @@
         header {
             text-align: center;
             margin-bottom: 30px;
-            color: white;
+            color: #f8d7da;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         
         h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
+            color: #f8d7da;
         }
         
         .subtitle {
             font-size: 1.2rem;
             opacity: 0.9;
+            color: #e9b3b9;
         }
         
         .controls {
@@ -58,36 +60,38 @@
         
         .chapter-btn {
             padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
+            background: rgba(139, 44, 58, 0.7);
+            border: 1px solid #a84a5c;
             border-radius: 30px;
-            color: white;
+            color: #f8d7da;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
         }
         
         .chapter-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(168, 74, 92, 0.8);
+            transform: translateY(-2px);
         }
         
         .chapter-btn.active {
-            background: white;
-            color: #1a2a6c;
+            background: #a84a5c;
+            color: #2c0b0e;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
         
         .progress {
             width: 100%;
             max-width: 500px;
             margin-bottom: 20px;
-            color: white;
+            color: #f8d7da;
             text-align: center;
         }
         
         .progress-bar {
             width: 100%;
             height: 10px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(139, 44, 58, 0.5);
             border-radius: 5px;
             margin-top: 5px;
             overflow: hidden;
@@ -95,9 +99,10 @@
         
         .progress-fill {
             height: 100%;
-            background: #4CAF50;
+            background: linear-gradient(90deg, #c44536, #e74c3c);
             border-radius: 5px;
             transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(230, 126, 114, 0.5);
         }
         
         .flashcard-container {
@@ -132,19 +137,21 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         }
         
         .flashcard-front {
-            background: white;
-            color: #1a2a6c;
+            background: linear-gradient(135deg, #5d1a1f, #8b2c3a);
+            color: #f8d7da;
+            border: 1px solid #a84a5c;
         }
         
         .flashcard-back {
-            background: #f8f9fa;
-            color: #333;
+            background: linear-gradient(135deg, #3d1216, #5d1a1f);
+            color: #f5f5f5;
             transform: rotateY(180deg);
             overflow-y: auto;
+            border: 1px solid #8b2c3a;
         }
         
         .term {
@@ -152,18 +159,21 @@
             font-weight: bold;
             text-align: center;
             margin-bottom: 15px;
+            color: #f8d7da;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
         
         .chapter-tag {
             position: absolute;
             top: 15px;
             right: 15px;
-            background: #1a2a6c;
-            color: white;
+            background: #2c0b0e;
+            color: #e9b3b9;
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: bold;
+            border: 1px solid #5d1a1f;
         }
         
         .definition {
@@ -171,6 +181,7 @@
             line-height: 1.6;
             text-align: center;
             margin-bottom: 20px;
+            color: #f5f5f5;
         }
         
         .details {
@@ -178,15 +189,17 @@
             line-height: 1.6;
             text-align: left;
             margin-bottom: 15px;
+            color: #e9b3b9;
         }
         
         .example {
-            background: #e9ecef;
+            background: rgba(44, 11, 14, 0.7);
             padding: 15px;
             border-radius: 8px;
             font-style: italic;
-            border-left: 4px solid #1a2a6c;
+            border-left: 4px solid #a84a5c;
             width: 100%;
+            color: #f5f5f5;
         }
         
         .navigation {
@@ -199,22 +212,24 @@
         
         .nav-btn {
             padding: 12px 25px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
+            background: rgba(139, 44, 58, 0.7);
+            border: 1px solid #a84a5c;
             border-radius: 30px;
-            color: white;
+            color: #f8d7da;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
         }
         
         .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(168, 74, 92, 0.8);
+            transform: translateY(-2px);
         }
         
         .nav-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
+            transform: none;
         }
         
         .review-controls {
@@ -227,36 +242,64 @@
             padding: 10px 20px;
             border: none;
             border-radius: 30px;
-            color: white;
+            color: #2c0b0e;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .review-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
         }
         
         .review-btn.difficult {
-            background: #f44336;
+            background: linear-gradient(135deg, #c44536, #e74c3c);
         }
         
         .review-btn.needs-review {
-            background: #ff9800;
+            background: linear-gradient(135deg, #e67e22, #f39c12);
         }
         
         .review-btn.mastered {
-            background: #4CAF50;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
         }
         
         .card-counter {
-            color: white;
+            color: #e9b3b9;
             margin-top: 10px;
             font-size: 1rem;
         }
         
         .instructions {
-            color: white;
+            color: #e9b3b9;
             text-align: center;
             margin-top: 20px;
             font-size: 0.9rem;
             opacity: 0.8;
+        }
+        
+        .key-shortcuts {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .shortcut {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .key {
+            background: rgba(139, 44, 58, 0.7);
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid #a84a5c;
         }
         
         @media (max-width: 768px) {
@@ -298,6 +341,11 @@
             
             .nav-btn {
                 width: 100%;
+            }
+            
+            .review-controls {
+                flex-wrap: wrap;
+                justify-content: center;
             }
         }
     </style>
@@ -353,6 +401,14 @@
         
         <div class="instructions">
             <p>Click the card to flip it. Use the buttons to mark your progress.</p>
+            <div class="key-shortcuts">
+                <div class="shortcut"><span class="key">←</span> Previous card</div>
+                <div class="shortcut"><span class="key">→</span> Next card</div>
+                <div class="shortcut"><span class="key">Space</span> Flip card</div>
+                <div class="shortcut"><span class="key">1</span> Difficult</div>
+                <div class="shortcut"><span class="key">2</span> Needs Review</div>
+                <div class="shortcut"><span class="key">3</span> Mastered</div>
+            </div>
         </div>
     </div>
 
@@ -794,7 +850,4 @@
         
         // Initialize
         initializeReviewData();
-        displayCurrentCard();
-    </script>
-</body>
-</html>
+        display
