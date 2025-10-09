@@ -524,11 +524,14 @@
                 `;
                 
                 cardsByChapter[chapter].forEach(card => {
+                    const formattedDefinition = card.definition.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                    const formattedDetails = card.details ? card.details.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') : '';
+                    
                     html += `
                         <div class="bg-gray-700 p-4 rounded-lg shadow-md mb-4">
                             <h3 class="text-xl font-semibold text-white mb-2">${card.term}</h3>
-                            <p class="text-gray-300 mb-2"><strong>Definition:</strong> ${card.definition}</p>
-                            ${card.details ? `<p class="text-sm text-gray-400"><strong>Details:</strong> ${card.details}</p>` : ''}
+                            <p class="text-gray-300 mb-2"><strong>Definition:</strong> ${formattedDefinition}</p>
+                            ${formattedDetails ? `<p class="text-sm text-gray-400"><strong>Details:</strong> ${formattedDetails}</p>` : ''}
                         </div>
                     `;
                 });
